@@ -8,6 +8,8 @@ public class OrbPickUp : MonoBehaviour
     public LayerMask pickUpLayer;
     public Transform holster;
 
+    private bool isHoldingOrb = false;
+
     private Orb currentlyHeldOrb;
 
     private void LateUpdate()
@@ -18,24 +20,36 @@ public class OrbPickUp : MonoBehaviour
     private void TryPickUp()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, pickUpRange, pickUpLayer);
+        bool foundPickableOrb = false;
+
         foreach (var hitCollider in hitColliders)
         {
-            Debug.Log("Im near a pickable object");
-
-            if (Input.GetKeyDown(KeyCode.F))
+            Orb pickableOrb = hitCollider.GetComponent<Orb>();
+            if (pickableOrb != null)
             {
-                Orb pickup = hitCollider.GetComponent<Orb>();
-                if (pickup != null)
+                foundPickableOrb = true;
+                Debug.Log("I'm near a pickable object");
+
+                if (Input.GetKeyDown(KeyCode.F))
                 {
+                    Vector3 originalPosition = pickableOrb.transform.position;
                     if (currentlyHeldOrb != null)
                     {
-                        currentlyHeldOrb.OnDrop(transform.position);
+                        currentlyHeldOrb.OnSwap(originalPosition); 
                     }
-                    currentlyHeldOrb = pickup;
-                    currentlyHeldOrb.OnPickUp(holster);
-                    break;
+                    currentlyHeldOrb = pickableOrb;
+                    currentlyHeldOrb.OnPickUp(holster); 
+                    isHoldingOrb = true;
+                    break; 
                 }
             }
+        }
+
+        if (isHoldingOrb && !foundPickableOrb && Input.GetKeyDown(KeyCode.F))
+        {
+            currentlyHeldOrb.OnDrop(currentlyHeldOrb.transform.position);
+            currentlyHeldOrb = null;
+            isHoldingOrb = false; 
         }
     }
 }
