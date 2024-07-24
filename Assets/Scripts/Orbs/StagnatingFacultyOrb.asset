@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: StagnatingFacultyOrb
   m_EditorClassIdentifier: 
   orbName: Stagnating Faculty
-  orbPrefab: {fileID: 0}
+  color: Blue

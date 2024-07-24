@@ -4,5 +4,5 @@ using UnityEngine;
 public class OrbData : ScriptableObject
 {
     public string orbName;
-    public GameObject orbPrefab;
+    public string color;
 }

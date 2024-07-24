@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FoolsSight
   m_EditorClassIdentifier: 
   orbName: Fools Sight
-  orbPrefab: {fileID: 0}
+  color: Green

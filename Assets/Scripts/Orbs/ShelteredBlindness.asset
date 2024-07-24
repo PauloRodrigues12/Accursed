@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ShelteredBlindness
   m_EditorClassIdentifier: 
   orbName: Sheltered Blindness
-  orbPrefab: {fileID: 0}
+  color: Purple

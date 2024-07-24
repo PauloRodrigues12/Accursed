@@ -6,6 +6,13 @@ public class Orb : MonoBehaviour
 {
     public OrbData orbType;
 
+    private BarrierInteraction barrier;
+
+    private void Start()
+    {
+        barrier = FindFirstObjectByType<BarrierInteraction>();
+    }
+
     public void OnPickUp(Transform holster)
     {
         Debug.Log("Picked up " + orbType.orbName);
@@ -13,6 +20,7 @@ public class Orb : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
         GetComponent<Collider>().enabled = false;
+        barrier.DeactivateBarriers();
     }
 
     public void OnSwap(Vector3 swapPosition)
@@ -20,19 +28,25 @@ public class Orb : MonoBehaviour
         Debug.Log("Swapped for " + orbType.orbName);
         transform.SetParent(null);
         transform.position = swapPosition;
-        GetComponent<Collider>().enabled = true; 
+        GetComponent<Collider>().enabled = true;
+        barrier.ActivateBarriers();
     }
 
     public void OnDrop(Vector3 dropPosition)
     {
         Debug.Log("Dropped " + orbType.orbName);
         transform.SetParent(null);
-        transform.position = new Vector3(dropPosition.x, GetGroundYPosition(dropPosition), dropPosition.z);
+        transform.position = new Vector3(dropPosition.x, 0.25f, dropPosition.z);
         GetComponent<Collider>().enabled = true;
+        barrier.ActivateBarriers();
     }
 
-    private float GetGroundYPosition(Vector3 position)
+    public void OnSocket(Vector3 socketPosition, int socketIndex)
     {
-        return 0.25f;
+        transform.SetParent(null);
+        transform.position = new Vector3(socketPosition.x, 0.25f, socketPosition.z);
+        GetComponent<Collider>().enabled = true;
+        barrier.ActivateBarriers();
+        barrier.DisableBarriers(socketIndex);
     }
 }

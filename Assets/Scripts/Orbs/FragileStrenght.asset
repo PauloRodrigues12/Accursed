@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f31ef5c4c468c442a13e771edbc3ee7, type: 3}
   m_Name: FragileStrenght
   m_EditorClassIdentifier: 
-  orbName: Fragile Sight
-  orbPrefab: {fileID: 0}
+  orbName: Fragile Strenght
+  color: Yellow

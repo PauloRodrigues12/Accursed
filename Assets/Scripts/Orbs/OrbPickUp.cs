@@ -5,29 +5,38 @@ using UnityEngine;
 public class OrbPickUp : MonoBehaviour
 {
     [SerializeField] private float pickUpRange = 2f;
+    [SerializeField] private float socketPlaceRange = 1f;
     public LayerMask pickUpLayer;
+    public LayerMask socketLayer;
     public Transform holster;
 
     private bool isHoldingOrb = false;
 
-    private Orb currentlyHeldOrb;
+    [HideInInspector] public Orb currentlyHeldOrb;
 
     private void LateUpdate()
     {
-        TryPickUp();
+        if (isHoldingOrb)
+        {
+            TryPlacingOrbOnSocket();
+        }
+        else
+        {
+            TryPickUp();
+        }
     }
 
     private void TryPickUp()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, pickUpRange, pickUpLayer);
-        bool foundPickableOrb = false;
+        bool canPickUpOrb = false;
 
         foreach (var hitCollider in hitColliders)
         {
             Orb pickableOrb = hitCollider.GetComponent<Orb>();
             if (pickableOrb != null)
             {
-                foundPickableOrb = true;
+                canPickUpOrb = true;
                 Debug.Log("I'm near a pickable object");
 
                 if (Input.GetKeyDown(KeyCode.F))
@@ -35,21 +44,55 @@ public class OrbPickUp : MonoBehaviour
                     Vector3 originalPosition = pickableOrb.transform.position;
                     if (currentlyHeldOrb != null)
                     {
-                        currentlyHeldOrb.OnSwap(originalPosition); 
+                        currentlyHeldOrb.OnSwap(originalPosition);
                     }
                     currentlyHeldOrb = pickableOrb;
-                    currentlyHeldOrb.OnPickUp(holster); 
+                    currentlyHeldOrb.OnPickUp(holster);
                     isHoldingOrb = true;
-                    break; 
+                    break;
                 }
             }
         }
 
-        if (isHoldingOrb && !foundPickableOrb && Input.GetKeyDown(KeyCode.F))
+        if (isHoldingOrb && !canPickUpOrb && Input.GetKeyDown(KeyCode.F))
         {
             currentlyHeldOrb.OnDrop(currentlyHeldOrb.transform.position);
             currentlyHeldOrb = null;
-            isHoldingOrb = false; 
+            isHoldingOrb = false;
+        }
+    }
+
+    private void TryPlacingOrbOnSocket()
+    {
+        Debug.Log("Trying to place orb on socket...");
+        Collider[] socketHitColliders = Physics.OverlapSphere(transform.position, socketPlaceRange, socketLayer);
+
+        foreach (var socketHitCollider in socketHitColliders)
+        {
+            Debug.Log("I'm near a socket");
+            Socket socket = socketHitCollider.GetComponent<Socket>();
+            if (socket != null)
+            {
+                Debug.Log("Found socket with the Color: " + socket.orbColor + ", and currently holding color: " + currentlyHeldOrb.orbType.color);
+                if (socket.orbColor == currentlyHeldOrb.orbType.color)
+                {
+                    Debug.Log("I can put the orb on the socket");
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        currentlyHeldOrb.OnSocket(socket.transform.position, socket.socketIndex); 
+                        currentlyHeldOrb = null;
+                        isHoldingOrb = false;
+                        return;
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            currentlyHeldOrb.OnDrop(currentlyHeldOrb.transform.position);
+            currentlyHeldOrb = null;
+            isHoldingOrb = false;
         }
     }
 }

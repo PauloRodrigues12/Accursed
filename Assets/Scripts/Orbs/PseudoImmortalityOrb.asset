@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PseudoImmortalityOrb
   m_EditorClassIdentifier: 
   orbName: Pseudo Immortality
-  orbPrefab: {fileID: 0}
+  color: Pink
