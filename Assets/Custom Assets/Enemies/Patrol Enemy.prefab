@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6535484834802057975}
   - component: {fileID: 5134337053897062647}
   - component: {fileID: 3599475488247990481}
+  - component: {fileID: 7946191188287899575}
   m_Layer: 0
   m_Name: Patrol Enemy
   m_TagString: Untagged
@@ -83,3 +84,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7946191188287899575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122208476419384626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98fd678e0c65f474987270b1ea8f34f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 0
+  movingVector: {x: 0, y: 0, z: 0}
+  moveSpeed: 0
