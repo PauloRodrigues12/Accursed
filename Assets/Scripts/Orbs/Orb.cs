@@ -36,7 +36,7 @@ public class Orb : MonoBehaviour
     {
         Debug.Log("Dropped " + orbType.orbName);
         transform.SetParent(null);
-        transform.position = new Vector3(dropPosition.x, 0.25f, dropPosition.z);
+        transform.position = new Vector3(dropPosition.x, 0.5f, dropPosition.z);
         GetComponent<Collider>().enabled = true;
         barrier.ActivateBarriers();
     }
@@ -44,7 +44,7 @@ public class Orb : MonoBehaviour
     public void OnSocket(Vector3 socketPosition, int socketIndex)
     {
         transform.SetParent(null);
-        transform.position = new Vector3(socketPosition.x, 0.25f, socketPosition.z);
+        transform.position = new Vector3(socketPosition.x, 0.5f, socketPosition.z);
         GetComponent<Collider>().enabled = true;
         barrier.ActivateBarriers();
         barrier.DisableBarriers(socketIndex);
