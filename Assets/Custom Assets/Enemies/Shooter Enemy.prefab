@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3952248315353585995}
   - component: {fileID: 691893231960053089}
   - component: {fileID: 8572802710898063920}
+  - component: {fileID: 3260652202227092371}
   m_Layer: 0
   m_Name: Shooter Enemy
   m_TagString: Untagged
@@ -83,3 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3260652202227092371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505436598680788678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2dced5e0ea7c1641b67dbd9a4b645ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 10
+  projectile: {fileID: 8815321639996040575, guid: 2ae321ef9db159c4c87d4ad91394fe6f,
+    type: 3}
+  shootingCooldown: 3
