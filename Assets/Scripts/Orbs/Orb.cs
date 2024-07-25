@@ -44,7 +44,7 @@ public class Orb : MonoBehaviour
         transform.position = new Vector3(dropPosition.x, 0.5f, dropPosition.z);
         GetComponent<Collider>().enabled = true;
         barrier.ActivateBarriers();
-        orbEffects.UndoAllBuffs();
+        //orbEffects.UndoAllBuffs();
 
     }
 
@@ -55,6 +55,6 @@ public class Orb : MonoBehaviour
         GetComponent<Collider>().enabled = true;
         barrier.ActivateBarriers();
         barrier.DisableBarriers(socketIndex);
-        orbEffects.UndoAllBuffs();
+        //orbEffects.UndoAllBuffs();
     }
 }

@@ -18,8 +18,7 @@ public class DamageManager : MonoBehaviour
             // depois chamar um script que contenha a variavel da vida do Player e meter aqui a decrementacao pelo dano
             if (player.isExposed == true)
             {
-                damagePoints *= 2;
-                player.healthPoints -= damagePoints;
+                player.healthPoints -= damagePoints * 2;
             } 
             else
                 player.healthPoints -= damagePoints;

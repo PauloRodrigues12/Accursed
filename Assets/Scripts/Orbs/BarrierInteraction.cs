@@ -18,6 +18,7 @@ public class BarrierInteraction : MonoBehaviour
             switch (orbPicked.currentlyHeldOrb.orbType.orbName)
             {
                 case "Pseudo Immortality":
+                    Debug.Log("Desativa as putas");
                     Collider PIcollider = barriers[0].GetComponent<BoxCollider>();
                     PIcollider.enabled = false;
                     Collider PIcollider2 = barriers[1].GetComponent<BoxCollider>();
@@ -69,6 +70,7 @@ public class BarrierInteraction : MonoBehaviour
 
     public void ActivateBarriers()
     {
+        Debug.Log("Ativa as putas");
         for (int i = 0; i < barriers.Length; i++)
         {
             Collider colliders = barriers[i].GetComponent<Collider>();

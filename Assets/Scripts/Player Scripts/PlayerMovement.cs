@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (isAttacking == true)
         {
-            attackArea.SetActive(true);
             animator.SetTrigger("Attack");
             StartCoroutine(AnimDuration(.1f));
         }
@@ -70,11 +69,17 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator AnimDuration(float intervalTime)
     {
         yield return new WaitForSeconds(intervalTime);
-        
+
         isAttacking = false;
         attackCooldown = true;
 
-        animator.SetTrigger("Attack");
+        yield return new WaitForSeconds(intervalTime);
+
+        attackArea.SetActive(true);
+
+        yield return new WaitForSeconds(intervalTime);
+
+        animator.ResetTrigger("Attack");
         attackArea.SetActive(false);
     }
 }
