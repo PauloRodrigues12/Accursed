@@ -12,11 +12,11 @@ public class OrbPickUp : MonoBehaviour
 
     public bool isHoldingOrb = false;
 
-    [HideInInspector] public Orb currentlyHeldOrb;
+    public Orb currentlyHeldOrb;
 
     private void LateUpdate()
     {
-        if (isHoldingOrb)
+        if (isHoldingOrb && currentlyHeldOrb != null)
         {
             TryPlacingOrbOnSocket();
         }
@@ -37,8 +37,7 @@ public class OrbPickUp : MonoBehaviour
             if (pickableOrb != null)
             {
                 canPickUpOrb = true;
-                Debug.Log("I'm near a pickable object");
-
+                Debug.Log("I can pick up this orb");
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     Vector3 originalPosition = pickableOrb.transform.position;
@@ -48,6 +47,7 @@ public class OrbPickUp : MonoBehaviour
                     }
                     currentlyHeldOrb = pickableOrb;
                     currentlyHeldOrb.OnPickUp(holster);
+                    Debug.Log("I picked the orb in code A");
                     isHoldingOrb = true;
                     break;
                 }
@@ -64,19 +64,15 @@ public class OrbPickUp : MonoBehaviour
 
     private void TryPlacingOrbOnSocket()
     {
-        Debug.Log("Trying to place orb on socket...");
         Collider[] socketHitColliders = Physics.OverlapSphere(transform.position, socketPlaceRange, socketLayer);
 
         foreach (var socketHitCollider in socketHitColliders)
         {
-            Debug.Log("I'm near a socket");
             Socket socket = socketHitCollider.GetComponent<Socket>();
             if (socket != null)
             {
-                Debug.Log("Found socket with the Color: " + socket.orbColor + ", and currently holding color: " + currentlyHeldOrb.orbType.color);
                 if (socket.orbColor == currentlyHeldOrb.orbType.color)
                 {
-                    Debug.Log("I can put the orb on the socket");
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         currentlyHeldOrb.OnSocket(socket.transform.position, socket.socketIndex); 

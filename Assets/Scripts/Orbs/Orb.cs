@@ -6,21 +6,26 @@ public class Orb : MonoBehaviour
 {
     public OrbData orbType;
 
-    private BarrierInteraction barrier;
+     private BarrierInteraction barrier;
+
+     private OrbEffects orbEffects;
 
     private void Start()
     {
         barrier = FindFirstObjectByType<BarrierInteraction>();
+        orbEffects = FindFirstObjectByType<OrbEffects>();
     }
-
     public void OnPickUp(Transform holster)
     {
         Debug.Log("Picked up " + orbType.orbName);
         transform.SetParent(holster);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
-        GetComponent<Collider>().enabled = false;
+        Collider orbCollider = GetComponent<Collider>();
+        orbCollider.enabled = false;
+        
         barrier.DeactivateBarriers();
+        Debug.Log("Disabled the collider");
     }
 
     public void OnSwap(Vector3 swapPosition)
@@ -39,6 +44,8 @@ public class Orb : MonoBehaviour
         transform.position = new Vector3(dropPosition.x, 0.5f, dropPosition.z);
         GetComponent<Collider>().enabled = true;
         barrier.ActivateBarriers();
+        orbEffects.UndoAllBuffs();
+
     }
 
     public void OnSocket(Vector3 socketPosition, int socketIndex)
@@ -48,5 +55,6 @@ public class Orb : MonoBehaviour
         GetComponent<Collider>().enabled = true;
         barrier.ActivateBarriers();
         barrier.DisableBarriers(socketIndex);
+        orbEffects.UndoAllBuffs();
     }
 }

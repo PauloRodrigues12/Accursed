@@ -15,56 +15,56 @@ public class BarrierInteraction : MonoBehaviour
 
     public void DeactivateBarriers()
     {
-        switch (orbPicked.currentlyHeldOrb.orbType.orbName)
-        {
-            case "Pseudo Immortality":
+            switch (orbPicked.currentlyHeldOrb.orbType.orbName)
+            {
+                case "Pseudo Immortality":
+                    Collider PIcollider = barriers[0].GetComponent<BoxCollider>();
+                    PIcollider.enabled = false;
+                    Collider PIcollider2 = barriers[1].GetComponent<BoxCollider>();
+                    PIcollider2.enabled = false;
+                    barriers[0].SetActive(true);
+                    barriers[1].SetActive(true);
 
-                Collider PIcollider = barriers[0].GetComponent<Collider>();
-                PIcollider.enabled = false;
-                Collider PIcollider2 = barriers[1].GetComponent<Collider>();
-                PIcollider2.enabled = false;
-                barriers[0].SetActive(true);
-                barriers[1].SetActive(true);
+                    break;
+                case "Stagnating Faculty":
+                    Debug.Log("Deactivated Barriers");
+                    Collider SFcollider = barriers[2].GetComponent<Collider>();
+                    SFcollider.enabled = false;
+                    Collider SFcollider2 = barriers[3].GetComponent<Collider>();
+                    SFcollider2.enabled = false;
+                    barriers[2].SetActive(true);
+                    barriers[3].SetActive(true);
 
-                break;
-            case "Stagnating Faculty":
+                    break;
+                case "Fragile Strenght":
+                    Debug.Log("Deactivated Barriers");
+                    Collider FScollider = barriers[4].GetComponent<Collider>();
+                    FScollider.enabled = false;
+                    Collider FScollider2 = barriers[5].GetComponent<Collider>();
+                    FScollider2.enabled = false;
+                    barriers[4].SetActive(true);
+                    barriers[5].SetActive(true);
 
-                Collider SFcollider = barriers[2].GetComponent<Collider>();
-                SFcollider.enabled = false;
-                Collider SFcollider2 = barriers[3].GetComponent<Collider>();
-                SFcollider2.enabled = false;
-                barriers[2].SetActive(true);
-                barriers[3].SetActive(true);
+                    break;
+                case "Sheltered Blindness":
+                    Debug.Log("Deactivated Barriers");
+                    Collider SBcollider = barriers[6].GetComponent<Collider>();
+                    SBcollider.enabled = false;
+                    Collider SBcollider2 = barriers[7].GetComponent<Collider>();
+                    SBcollider2.enabled = false;
+                    barriers[6].SetActive(true);
+                    barriers[7].SetActive(true);
 
-                break;
-            case "Fragile Strenght":
+                    break;
+                case "Fools Sight":
+                    Debug.Log("Deactivated Barriers");
+                    Collider FoScollider = barriers[8].GetComponent<Collider>();
+                    FoScollider.enabled = false;
+                    barriers[8].SetActive(true);
 
-                Collider FScollider = barriers[4].GetComponent<Collider>();
-                FScollider.enabled = false;
-                Collider FScollider2 = barriers[5].GetComponent<Collider>();
-                FScollider2.enabled = false;
-                barriers[4].SetActive(true);
-                barriers[5].SetActive(true);
-
-                break;
-            case "Sheltered Blindness":
-
-                Collider SBcollider = barriers[6].GetComponent<Collider>();
-                SBcollider.enabled = false;
-                Collider SBcollider2 = barriers[7].GetComponent<Collider>();
-                SBcollider2.enabled = false;
-                barriers[6].SetActive(true);
-                barriers[7].SetActive(true);
-
-                break;
-            case "Fools Sight":
-
-                Collider FoScollider = barriers[8].GetComponent<Collider>();
-                FoScollider.enabled = false;
-                barriers[8].SetActive(true);
-
-                break;
-        }
+                    break;
+            }
+        
     }
 
     public void ActivateBarriers()
