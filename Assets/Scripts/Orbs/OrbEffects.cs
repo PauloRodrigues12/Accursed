@@ -28,11 +28,14 @@ public class OrbEffects : MonoBehaviour
     [SerializeField] private Material invisibleWallMat;
 
     public OrbPickUp orbPickedUp;
+
     private PlayerMovement m_player;
+    private PlayerManager hp_player;
 
     private void Start()
     { 
         m_player = FindFirstObjectByType<PlayerMovement>();
+        hp_player = FindFirstObjectByType<PlayerManager>();
     }
     private void Update()
     {
@@ -75,10 +78,10 @@ public class OrbEffects : MonoBehaviour
 
         if (timeSinceLastRegen > regenerationRate)
         {
-            if (m_player.healthPoints < m_player.maxHealthPoints)
+            if (hp_player.healthPoints < hp_player.maxHealthPoints)
             {
-                m_player.healthPoints++;
-                m_player.maxHealthPoints--;
+                hp_player.healthPoints++;
+                hp_player.maxHealthPoints--;
             }
 
             timeSinceLastRegen = 0.0f;

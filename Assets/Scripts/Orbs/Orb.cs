@@ -8,12 +8,9 @@ public class Orb : MonoBehaviour
 
     private BarrierInteraction barrier;
 
-    private OrbEffects orbEffects;
-
     private void Start()
     {
         barrier = FindFirstObjectByType<BarrierInteraction>();
-        orbEffects = FindFirstObjectByType<OrbEffects>();
     }
 
     public void OnPickUp(Transform holster)
@@ -42,7 +39,6 @@ public class Orb : MonoBehaviour
         transform.position = new Vector3(dropPosition.x, 0.5f, dropPosition.z);
         GetComponent<Collider>().enabled = true;
         barrier.ActivateBarriers();
-        orbEffects.UndoAllBuffs();
     }
 
     public void OnSocket(Vector3 socketPosition, int socketIndex)
@@ -52,6 +48,5 @@ public class Orb : MonoBehaviour
         GetComponent<Collider>().enabled = true;
         barrier.ActivateBarriers();
         barrier.DisableBarriers(socketIndex);
-        orbEffects.UndoAllBuffs();
     }
 }

@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class MeleeEnemy : MonoBehaviour
 {
-    [SerializeField] private int healthPoints;
     public GameObject attackArea;
     public float attackingCooldown;
     private float attackingTimer;
+    private Animator animator;
     void Start()
     {
-        healthPoints = 20;
-
+        animator = GetComponent<Animator>();
         attackingTimer = attackingCooldown;
     }
 
@@ -22,6 +21,7 @@ public class MeleeEnemy : MonoBehaviour
         if (attackingTimer <= 0)
         {
             attackArea.SetActive(true);
+            animator.SetTrigger("Attack");
             StartCoroutine(AnimDuration(.5f));
             attackingTimer = attackingCooldown;
         }
@@ -30,6 +30,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(intervalTime);
         
+        animator.ResetTrigger("Attack");
         attackArea.SetActive(false);
     }
 }

@@ -18,7 +18,8 @@ public class ProjectileBehaviour : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Terrain"))
+        if(collision.gameObject.CompareTag("Terrain") || 
+        collision.gameObject.CompareTag("Player"))
             Destroy(gameObject);
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 928572338838961464}
   - component: {fileID: 5584571633252880849}
   - component: {fileID: 6413851769169220710}
+  - component: {fileID: 4491159151697704149}
   m_Layer: 8
   m_Name: InvisibleProjectile
   m_TagString: Projectile
@@ -105,7 +106,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1472
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -147,3 +148,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 20
+--- !u!114 &4491159151697704149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815321639996040575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 320e5abc21a0b95499178922c3877741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePoints: 5
+  knockbackForce: 10
+  player: {fileID: 0}
