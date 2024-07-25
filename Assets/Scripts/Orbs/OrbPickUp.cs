@@ -10,7 +10,7 @@ public class OrbPickUp : MonoBehaviour
     public LayerMask socketLayer;
     public Transform holster;
 
-    private bool isHoldingOrb = false;
+    public bool isHoldingOrb = false;
 
     [HideInInspector] public Orb currentlyHeldOrb;
 

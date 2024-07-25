@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float healthPoints;
     public float speed;
     public float lookAtSpeed;
     public Transform playerModel;
