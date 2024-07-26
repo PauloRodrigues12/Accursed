@@ -45,7 +45,6 @@ public class Orb : MonoBehaviour
         GetComponent<Collider>().enabled = true;
         barrier.ActivateBarriers();
         orbEffects.UndoAllBuffs();
-
     }
 
     public void OnSocket(Vector3 socketPosition, int socketIndex)

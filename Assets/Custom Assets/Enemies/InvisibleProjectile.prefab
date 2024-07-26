@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a6e134ce229a55f4db289f242ba0168c, type: 2}
+  - {fileID: 2100000, guid: c17ff2144d79c4c4db5980076fdb2920, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1472
+    m_Bits: 3520
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0

@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - Enemy
   - ArmouredEnemy
+  - MeleeEnemy
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Projectile
   - Player
   - Enemy
-  - 
+  - AttackArea
   - 
   - 
   - 

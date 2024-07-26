@@ -12,6 +12,7 @@ public class OrbEffects : MonoBehaviour
     [Header("Blue Orb Effects")]
     public GameObject blueProjectile;
     [SerializeField] private Transform holster;
+    [SerializeField] private Transform playerModel;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float timeBeforeShooting;
     private float timeSinceLastShot = 0.0f;
@@ -19,13 +20,13 @@ public class OrbEffects : MonoBehaviour
 
     [Header("Yellow Orb Effects")]
     [SerializeField] private float attackSpeed = 2.0f;
-    [SerializeField] private float damageTakenIncrease;
+    public GameObject yellowAttackArea;
     private float timeSinceLastAttack = 0.0f;
     private bool isWithYellowBuffs = false;
 
     [Header("Purple Orb Effects")]
     [SerializeField] private GameObject globalVolume;
-    //Criar Variavel dos projeteis Roxos
+    public List<GameObject> purpleEnemies = new List<GameObject>();
     private bool isWithPurpleBuffs = false;
 
     [Header("Green Orb Effects")]
@@ -111,14 +112,7 @@ public class OrbEffects : MonoBehaviour
             timeSinceLastShot += Time.deltaTime;
             if (timeSinceLastShot >= timeBeforeShooting)
             {
-                GameObject projectile = Instantiate(blueProjectile, holster.position, holster.rotation);
-
-                Rigidbody rb = projectile.GetComponent<Rigidbody>();
-
-                if (rb != null)
-                {
-                    rb.velocity = holster.forward * projectileSpeed;
-                }
+                Instantiate(blueProjectile, new Vector3(holster.position.x, holster.position.y + 2f, holster.position.z), playerModel.rotation);
                 timeSinceLastShot = 0.0f;
             }
         }
@@ -128,12 +122,14 @@ public class OrbEffects : MonoBehaviour
     {
         if (isWithYellowBuffs)
         {
-            //Meter o Player a levar Double Damage
+            hp_player.isExposed = true;
+
             timeSinceLastAttack += Time.deltaTime;
             if (timeSinceLastAttack >= attackSpeed)
             {
-                // Depois meter a logica do Player a atacar aqui
-                Debug.Log("Ataquei");
+                yellowAttackArea.SetActive(true);
+
+                StartCoroutine(yellowAnim(.1f));
 
                 timeSinceLastAttack = 0.0f;
             }
@@ -143,8 +139,14 @@ public class OrbEffects : MonoBehaviour
 
     private void GetPurpleBuff()
     {
-            globalVolume.SetActive(true);
-            //Set UnActive aos Projeteis Roxos aqui      
+        globalVolume.SetActive(true);
+        for (int i = 0; i < purpleEnemies.Count; i++)
+        {
+            if (purpleEnemies[i] != null)
+            {
+                purpleEnemies[i].SetActive(false);
+            }
+        }
     }
 
     private void GetGreenBuff()
@@ -170,11 +172,34 @@ public class OrbEffects : MonoBehaviour
             color.a = initialAlpha;
             invisibleMats[i].color = color;
         }
+
+        for (int i = 0; i < purpleEnemies.Count; i++)
+        {
+            if (purpleEnemies[i] != null)
+            {
+                purpleEnemies[i].SetActive(true);
+            }
+        }
+
         //Depois tirar as booleanas desnecessarias
         isWithPinkBuffs = false;
         isWithBlueBuffs = false;
         isWithYellowBuffs = false;
         isWithPurpleBuffs = false;
         isWithGreenBuffs = false;
-    } 
+
+        //Remover o expose effect do player (receber double damage)
+        hp_player.isExposed = true;
+    }
+
+    IEnumerator yellowAnim(float intervalTime)
+    {
+        yield return new WaitForSeconds(intervalTime);
+
+        //VisualEffects
+
+        yield return new WaitForSeconds(intervalTime);
+
+        yellowAttackArea.SetActive(false);
+    }
 }

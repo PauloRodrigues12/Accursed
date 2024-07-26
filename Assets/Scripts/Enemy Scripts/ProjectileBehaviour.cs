@@ -12,7 +12,6 @@ public class ProjectileBehaviour : MonoBehaviour
     }
     void Update()
     {
-        //transform.localPosition += new Vector3(projectileSpeed, 0, 0) * Time.deltaTime;
         rb.velocity = transform.forward * projectileSpeed;
     }
 

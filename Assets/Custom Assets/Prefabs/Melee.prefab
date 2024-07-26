@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf04cad88328cd459bc62797f5d6d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 20
+  healthPoints: 15
 --- !u!1 &3279015853955916894
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 5661026301008333889}
   - component: {fileID: 5548240682594951412}
   - component: {fileID: 4630925667120294076}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}

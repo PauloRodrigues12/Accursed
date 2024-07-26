@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackManager : MonoBehaviour
+public class YellowAttackManager : MonoBehaviour
 {
     public float attackPoints;
 
@@ -10,7 +10,7 @@ public class PlayerAttackManager : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.CompareTag("Enemy") || collider.gameObject.CompareTag("MeleeEnemy"))
+        if(collider.gameObject.CompareTag("ArmouredEnemy"))
         {
             enemy = collider.gameObject.GetComponent<EnemyManager>();
             enemy.healthPoints -= attackPoints;
