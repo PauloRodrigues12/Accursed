@@ -316,6 +316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 20
+  particleSystem: {fileID: 1751503244186017302, guid: d8d4ebd9921ffaf498ddcc876c85e4e0,
+    type: 3}
 --- !u!114 &7772111343851582241
 MonoBehaviour:
   m_ObjectHideFlags: 0

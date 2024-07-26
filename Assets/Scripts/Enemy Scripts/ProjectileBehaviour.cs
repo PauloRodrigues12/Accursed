@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileBehaviour : MonoBehaviour
 {
     public float projectileSpeed;
+    public GameObject particleSystem;
     private Rigidbody rb;
     void Start() 
     {
@@ -19,6 +20,9 @@ public class ProjectileBehaviour : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Terrain") || 
         collision.gameObject.CompareTag("Player"))
+        {
+            Instantiate(particleSystem, transform.position, transform.rotation);
             Destroy(gameObject);
+        }
     }
 }
