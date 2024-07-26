@@ -159,6 +159,9 @@ public class OrbEffects : MonoBehaviour
                 color.a = alpha;
                 invisibleMats[i].color = color;
             }
+
+            m_player.speed = -10;
+            m_player.playerModel.localScale = new Vector3(1, 1, -1);
         }
     }
 
@@ -190,6 +193,10 @@ public class OrbEffects : MonoBehaviour
 
         //Remover o expose effect do player (receber double damage)
         hp_player.isExposed = true;
+
+        //Forçar o speed do jogador ao normal e devolver os controlos normais
+        m_player.speed = 10;
+        m_player.playerModel.localScale = new Vector3(1, 1, 1);
     }
 
     IEnumerator yellowAnim(float intervalTime)

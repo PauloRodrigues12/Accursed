@@ -12,8 +12,11 @@ public class InterfaceManager : MonoBehaviour
     public RawImage backgroundUI;
     public RawImage maxHealth;
     public RawImage healthPoints;
-    private PlayerManager playerManager;
 
+    [Header("Curse Display")]
+    public GameObject[] curses;
+    private PlayerManager playerManager;
+    public OrbPickUp orbPickUp;
     void Start()
     {
         playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
@@ -32,5 +35,47 @@ public class InterfaceManager : MonoBehaviour
 
         healthPoints.rectTransform.sizeDelta = new Vector2(playerManager.healthPoints * 10, healthPoints.rectTransform.sizeDelta.y);
         maxHealth.rectTransform.sizeDelta = new Vector2(playerManager.maxHealthPoints * 10, maxHealth.rectTransform.sizeDelta.y);
+
+        if (orbPickUp.currentlyHeldOrb != null)
+        {
+            switch (orbPickUp.currentlyHeldOrb.orbType.color)
+            {
+                case "Blue":
+
+                    curses[0].SetActive(true);
+
+                    break;
+                case "Pink":
+
+                    curses[1].SetActive(true);
+
+                    break;
+                case "Yellow":
+
+                    curses[2].SetActive(true);
+
+                    break;
+                case "Purple":
+
+                    curses[3].SetActive(true);
+
+                    break;
+                case "Green":
+
+                    curses[4].SetActive(true);
+
+                    break;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < curses.Length; i++)
+            {
+                if (curses[i] != null)
+                {
+                    curses[i].SetActive(false);
+                }
+            }
+        }
     }
 }
