@@ -35375,6 +35375,7 @@ MonoBehaviour:
   - {fileID: 2052293841}
   - {fileID: 132035883}
   - {fileID: 1249992311}
+  - {fileID: 1367401141}
   alpha: 0.4
   initialAlpha: 0
   invisibleMats:
