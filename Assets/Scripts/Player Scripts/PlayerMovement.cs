@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Attacking Variables")]
     public GameObject attackArea;
+    public GameObject vfxArea;
+
     public float attackingCooldown;
     private float attackingTimer;
     private bool isAttacking;
@@ -75,10 +77,15 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(intervalTime);
 
         attackArea.SetActive(true);
+        vfxArea.SetActive(true);
 
         yield return new WaitForSeconds(intervalTime);
 
         animator.ResetTrigger("Attack");
         attackArea.SetActive(false);
+
+        yield return new WaitForSeconds(.5f);
+
+        vfxArea.SetActive(false);
     }
 }

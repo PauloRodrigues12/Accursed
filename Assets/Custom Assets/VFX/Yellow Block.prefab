@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3888166294352290519}
   - component: {fileID: 4555269679115602735}
   - component: {fileID: 9111360219954990491}
-  - component: {fileID: 4068979642459527768}
   m_Layer: 0
   m_Name: Yellow Block
   m_TagString: Untagged
@@ -197,16 +196,3 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4068979642459527768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3268510178087711171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab99e887439b6fd4a86dffb19895d2db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 2

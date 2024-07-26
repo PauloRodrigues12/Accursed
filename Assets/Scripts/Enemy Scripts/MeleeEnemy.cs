@@ -5,6 +5,7 @@ using UnityEngine;
 public class MeleeEnemy : MonoBehaviour
 {
     public GameObject attackArea;
+    public GameObject vfxArea;
     public float attackingCooldown;
     private float attackingTimer;
     private Animator animator;
@@ -20,17 +21,25 @@ public class MeleeEnemy : MonoBehaviour
 
         if (attackingTimer <= 0)
         {
-            attackArea.SetActive(true);
             animator.SetTrigger("Attack");
-            StartCoroutine(AnimDuration(.5f));
+            StartCoroutine(AnimDuration(.1f));
             attackingTimer = attackingCooldown;
         }
     }
     IEnumerator AnimDuration(float intervalTime)
     {
         yield return new WaitForSeconds(intervalTime);
+
+        attackArea.SetActive(true);
+        vfxArea.SetActive(true);
+
+        yield return new WaitForSeconds(.4f);
         
         animator.ResetTrigger("Attack");
         attackArea.SetActive(false);
+
+        yield return new WaitForSeconds(.1f);
+
+        vfxArea.SetActive(false);
     }
 }

@@ -21,6 +21,7 @@ public class OrbEffects : MonoBehaviour
     [Header("Yellow Orb Effects")]
     [SerializeField] private float attackSpeed = 2.0f;
     public GameObject yellowAttackArea;
+    public GameObject yellowVfxArea;
     private float timeSinceLastAttack = 0.0f;
     private bool isWithYellowBuffs = false;
 
@@ -203,10 +204,14 @@ public class OrbEffects : MonoBehaviour
     {
         yield return new WaitForSeconds(intervalTime);
 
-        //VisualEffects
+        yellowVfxArea.SetActive(true);
 
         yield return new WaitForSeconds(intervalTime);
 
         yellowAttackArea.SetActive(false);
+
+        yield return new WaitForSeconds(.3f);
+        
+        yellowVfxArea.SetActive(false);
     }
 }

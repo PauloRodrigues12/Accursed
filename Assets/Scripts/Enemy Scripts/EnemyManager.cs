@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
     public float healthPoints;
     private Animator animator;
     private Collider collider;
+    public GameObject shieldVFX;
 
     void Start()
     {
@@ -21,11 +22,21 @@ public class EnemyManager : MonoBehaviour
             collider.enabled = false;
             StartCoroutine(endAnim(3f));
         }
+
+        if (shieldVFX != null && shieldVFX.activeSelf == true)
+            StartCoroutine(endVFX(1f));
     }
 
     IEnumerator endAnim(float intervalTime)
     {
         yield return new WaitForSeconds(intervalTime);
         Destroy(gameObject);
+    }
+
+    IEnumerator endVFX(float intervalTime)
+    {
+        yield return new WaitForSeconds(intervalTime);
+
+        shieldVFX.SetActive(false);
     }
 }

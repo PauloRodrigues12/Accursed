@@ -15,5 +15,13 @@ public class PlayerAttackManager : MonoBehaviour
             enemy = collider.gameObject.GetComponent<EnemyManager>();
             enemy.healthPoints -= attackPoints;
         }
-    }
+
+        if(collider.gameObject.CompareTag("ArmouredEnemy"))
+        {
+            enemy = collider.gameObject.GetComponent<EnemyManager>();
+            
+            enemy.shieldVFX.SetActive(true);
+
+        }
+    }   
 }

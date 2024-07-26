@@ -19,10 +19,9 @@ public class BlueProjectileBehaviour : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Terrain") || 
-        collision.gameObject.CompareTag("ArmouredEnemy") ||
-        collision.gameObject.CompareTag("MeleeEnemy"))
+        if(collision.gameObject.CompareTag("Terrain"))
             Destroy(gameObject);
+
         else if (collision.gameObject.CompareTag("Enemy"))
         {
             enemy = collision.gameObject.GetComponent<EnemyManager>();
@@ -30,6 +29,14 @@ public class BlueProjectileBehaviour : MonoBehaviour
             enemy.healthPoints -= damagePoints;
 
             Destroy(gameObject);
-        }  
+        }
+        else if(collision.gameObject.CompareTag("ArmouredEnemy") || collision.gameObject.CompareTag("MeleeEnemy"))
+        {
+            enemy = collision.gameObject.GetComponent<EnemyManager>();
+            
+            enemy.shieldVFX.SetActive(true);
+
+            Destroy(gameObject);
+        }
     }
 }
