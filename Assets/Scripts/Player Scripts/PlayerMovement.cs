@@ -49,14 +49,14 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
         animator.SetFloat("HorizontalSpeed", Mathf.Abs(horizontalInput));
         animator.SetFloat("VerticalSpeed", Mathf.Abs(verticalInput));
         animator.SetBool("HoldingOrb", orbPickUp.isHoldingOrb);
 
-        Vector3 movingDirection = new Vector3(horizontalInput, 0, verticalInput);
+        Vector3 movingDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
         transform.Translate(movingDirection  * speed * Time.deltaTime, Space.World);
 
