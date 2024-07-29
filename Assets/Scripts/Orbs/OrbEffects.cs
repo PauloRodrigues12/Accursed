@@ -162,7 +162,7 @@ public class OrbEffects : MonoBehaviour
             }
 
             m_player.speed = -10;
-            m_player.playerModel.localScale = new Vector3(1, 1, -1);
+            //m_player.playerModel.localScale = new Vector3(1, 1, -1);
         }
     }
 
@@ -197,7 +197,7 @@ public class OrbEffects : MonoBehaviour
 
         //Forçar o speed do jogador ao normal e devolver os controlos normais
         m_player.speed = 10;
-        m_player.playerModel.localScale = new Vector3(1, 1, 1);
+        //m_player.playerModel.localScale = new Vector3(1, 1, 1);
     }
 
     IEnumerator yellowAnim(float intervalTime)
