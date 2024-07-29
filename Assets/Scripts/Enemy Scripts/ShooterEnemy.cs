@@ -23,7 +23,10 @@ public class ShooterEnemy : MonoBehaviour
     }
     void Update()
     {
-        shootingTimer -= Time.deltaTime;
+        if (animator.GetBool("isDead") == false)
+        {
+            shootingTimer -= Time.deltaTime;
+        }
 
         if (shootingTimer <= 0)
         {

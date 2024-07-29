@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 10
+  shieldVFX: {fileID: 0}
 --- !u!1 &4787964026466651909
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float lookAtSpeed;
     public Transform playerModel;
+    private Rigidbody rb;
     
     [Header("Attacking Variables")]
     public GameObject attackArea;
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start ()
     {
+        rb = GetComponent<Rigidbody>();
         orbPickUp = GetComponent<OrbPickUp>();
         attackingTimer = attackingCooldown;
     }
@@ -55,16 +58,26 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("HorizontalSpeed", Mathf.Abs(horizontalInput));
         animator.SetFloat("VerticalSpeed", Mathf.Abs(verticalInput));
         animator.SetBool("HoldingOrb", orbPickUp.isHoldingOrb);
+        
+        rb.velocity = new Vector3(horizontalInput, rb.velocity.y, verticalInput).normalized * speed;
 
-        Vector3 movingDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
-
-        transform.Translate(movingDirection  * speed * Time.deltaTime, Space.World);
-
-        if (movingDirection != Vector3.zero)
+        if (rb.velocity != Vector3.zero)
         {
-            Quaternion lookAtRotation = Quaternion.LookRotation(movingDirection, Vector3.up);
+            Quaternion lookAtRotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
             playerModel.transform.rotation = Quaternion.RotateTowards(playerModel.transform.rotation, lookAtRotation, lookAtSpeed * Time.deltaTime);
         }
+
+        /*
+        var direction = transform.forward * verticalInput + transform.right * horizontalInput;
+        direction.Normalize();
+        rb.MovePosition(transform.position + direction * speed * Time.deltaTime);
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion lookAtRotation = Quaternion.LookRotation(direction, Vector3.up);
+            playerModel.transform.rotation = Quaternion.RotateTowards(playerModel.transform.rotation, lookAtRotation, lookAtSpeed * Time.deltaTime);
+        }
+        */
     }
 
     IEnumerator AnimDuration(float intervalTime)

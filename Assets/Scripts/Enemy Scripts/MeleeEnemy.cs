@@ -17,7 +17,10 @@ public class MeleeEnemy : MonoBehaviour
 
     void Update()
     {
-        attackingTimer -= Time.deltaTime;
+        if (animator.GetBool("isDead") == false)
+        {
+            attackingTimer -= Time.deltaTime;
+        }
 
         if (attackingTimer <= 0)
         {
