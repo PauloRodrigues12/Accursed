@@ -10,7 +10,12 @@ public class PlayerMovement : MonoBehaviour
     public float lookAtSpeed;
     public Transform playerModel;
     private Rigidbody rb;
-    
+
+    [Header("Knockback Variables")]
+    private bool isKnockedBack;
+    private Vector3 knockbackVelocity;
+    public float knockbackDecayRate;
+
     [Header("Attacking Variables")]
     public GameObject attackArea;
     public GameObject vfxArea;
@@ -52,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -78,6 +84,27 @@ public class PlayerMovement : MonoBehaviour
             playerModel.transform.rotation = Quaternion.RotateTowards(playerModel.transform.rotation, lookAtRotation, lookAtSpeed * Time.deltaTime);
         }
         */
+        Vector3 inputVelocity = new Vector3(horizontalInput, 0, verticalInput).normalized * speed;
+        if (isKnockedBack)
+        {
+            rb.velocity = inputVelocity + knockbackVelocity;
+            knockbackVelocity = Vector3.Lerp(knockbackVelocity, Vector3.zero, knockbackDecayRate * Time.deltaTime);
+            if (knockbackVelocity.magnitude < 0.1f)
+            {
+                isKnockedBack = false;
+            }
+        }
+        else
+        {
+            rb.velocity = inputVelocity;
+        }
+
+    }
+
+    public void ApplyKnockback(Vector3 force)
+    {
+        knockbackVelocity = force;
+        isKnockedBack = true;
     }
 
     IEnumerator AnimDuration(float intervalTime)
