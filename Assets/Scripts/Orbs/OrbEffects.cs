@@ -26,7 +26,7 @@ public class OrbEffects : MonoBehaviour
     private bool isWithYellowBuffs = false;
 
     [Header("Purple Orb Effects")]
-    [SerializeField] private GameObject globalVolume;
+    [SerializeField] private GameObject oblivionCircle;
     public List<GameObject> purpleEnemies = new List<GameObject>();
     private bool isWithPurpleBuffs = false;
 
@@ -140,7 +140,8 @@ public class OrbEffects : MonoBehaviour
 
     private void GetPurpleBuff()
     {
-        globalVolume.SetActive(true);
+        oblivionCircle.SetActive(true);
+        
         for (int i = 0; i < purpleEnemies.Count; i++)
         {
             if (purpleEnemies[i] != null)
@@ -169,7 +170,8 @@ public class OrbEffects : MonoBehaviour
     public void UndoAllBuffs()
     {
         m_player.speed = 10f;
-        globalVolume.SetActive(false);
+        oblivionCircle.SetActive(false);
+        
         for (int i = 0; i < invisibleMats.Length; i++)
         {
             Color color = invisibleMats[i].color;

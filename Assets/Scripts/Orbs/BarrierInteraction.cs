@@ -33,8 +33,11 @@ public class BarrierInteraction : MonoBehaviour
                     SFcollider.enabled = false;
                     Collider SFcollider2 = barriers[3].GetComponent<Collider>();
                     SFcollider2.enabled = false;
+                    Collider SFcollider4 = barriers[9].GetComponent<Collider>();
+                    SFcollider4.enabled = false;
                     barriers[2].SetActive(true);
                     barriers[3].SetActive(true);
+                    barriers[9].SetActive(true);
 
                     break;
                 case "Fragile Strenght":
@@ -49,11 +52,8 @@ public class BarrierInteraction : MonoBehaviour
                     break;
                 case "Sheltered Blindness":
                     Debug.Log("Deactivated Barriers");
-                    Collider SBcollider = barriers[6].GetComponent<Collider>();
+                    Collider SBcollider = barriers[7].GetComponent<Collider>();
                     SBcollider.enabled = false;
-                    Collider SBcollider2 = barriers[7].GetComponent<Collider>();
-                    SBcollider2.enabled = false;
-                    barriers[6].SetActive(true);
                     barriers[7].SetActive(true);
 
                     break;
@@ -61,7 +61,11 @@ public class BarrierInteraction : MonoBehaviour
                     Debug.Log("Deactivated Barriers");
                     Collider FoScollider = barriers[8].GetComponent<Collider>();
                     FoScollider.enabled = false;
+                    Collider SBcollider2 = barriers[6].GetComponent<Collider>();
+                    SBcollider2.enabled = false;
                     barriers[8].SetActive(true);
+                    barriers[6].SetActive(true);
+                    
 
                     break;
             }

@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 10
+  shieldVFX: {fileID: 0}
 --- !u!1 &5022416565196857639
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +257,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: be734def6a5283348a6a3dbda777f4a5, type: 2}
+  - {fileID: 2100000, guid: efe604b65f35440419d040be48876d33, type: 2}
   - {fileID: 2100000, guid: be734def6a5283348a6a3dbda777f4a5, type: 2}
   - {fileID: 2100000, guid: efe604b65f35440419d040be48876d33, type: 2}
   m_StaticBatchInfo:

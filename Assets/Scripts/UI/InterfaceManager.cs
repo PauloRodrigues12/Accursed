@@ -21,8 +21,8 @@ public class InterfaceManager : MonoBehaviour
     {
         playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
 
-        outlineUI.rectTransform.sizeDelta = new Vector2((playerManager.healthPoints * 10) + 10, outlineUI.rectTransform.sizeDelta.y);
-        backgroundUI.rectTransform.sizeDelta = new Vector2(playerManager.healthPoints * 10, backgroundUI.rectTransform.sizeDelta.y);
+        outlineUI.rectTransform.sizeDelta = new Vector2((playerManager.healthPoints * 3) + 10, outlineUI.rectTransform.sizeDelta.y);
+        backgroundUI.rectTransform.sizeDelta = new Vector2(playerManager.healthPoints * 3, backgroundUI.rectTransform.sizeDelta.y);
     }
     void Update()
     {
@@ -33,8 +33,8 @@ public class InterfaceManager : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        healthPoints.rectTransform.sizeDelta = new Vector2(playerManager.healthPoints * 10, healthPoints.rectTransform.sizeDelta.y);
-        maxHealth.rectTransform.sizeDelta = new Vector2(playerManager.maxHealthPoints * 10, maxHealth.rectTransform.sizeDelta.y);
+        healthPoints.rectTransform.sizeDelta = new Vector2(playerManager.healthPoints * 3, healthPoints.rectTransform.sizeDelta.y);
+        maxHealth.rectTransform.sizeDelta = new Vector2(playerManager.maxHealthPoints * 3, maxHealth.rectTransform.sizeDelta.y);
 
         if (orbPickUp.currentlyHeldOrb != null)
         {

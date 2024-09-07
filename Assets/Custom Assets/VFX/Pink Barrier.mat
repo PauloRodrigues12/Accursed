@@ -51,8 +51,8 @@ Material:
     - _QueueOffset: 0
     - _Velocidade: -0.2
     m_Colors:
-    - _Base_Color: {r: 0.95686275, g: 0.56078434, b: 1, a: 0}
-    - _Color: {r: 1, g: 0.34509805, b: 0.83137256, a: 0}
+    - _Base_Color: {r: 1, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.54901963, g: 0, b: 0.039215688, a: 0}
     - _Fresnel_Color: {r: 0, g: 0.5748587, b: 1, a: 0}
     - _Tilling: {r: 2, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
